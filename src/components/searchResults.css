@@ -1,0 +1,46 @@
+ul {
+  list-style: none;
+}
+
+.searchResults {
+  width: 60%;
+  display: grid;
+  place-items: center center;
+  padding: 0;
+  margin-top: 50px;
+}
+
+.outerLi {
+  width: 100%;
+  padding-top: 10px;
+  padding-bottom: 10px;
+}
+
+.outerLi:nth-child(odd) {
+  background-color: #e5b13a;
+}
+
+.outerLi:nth-child(odd) {
+  background-color: #e5b13a;
+}
+
+.searchResults .outerLi:nth-child(even) {
+  background-color: rgba(229, 177, 58, 0.85);
+}
+
+.innerList {
+  display: flex;
+}
+
+.innerList li {
+  margin-left: 15px;
+}
+
+.innerList:first-child {
+  margin-left: -15px;
+}
+
+.property {
+  font-weight: bold;
+  margin-right: 10px;
+}
