@@ -64,3 +64,10 @@ button {
 .error-page {
   margin-top: 200px;
 }
+
+.noResults {
+  margin-top: 50px;
+  font-size: 24px;
+  font-weight: 700;
+  color: #e5b13a;
+}

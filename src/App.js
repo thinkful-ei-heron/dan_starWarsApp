@@ -56,36 +56,38 @@ export default class App extends Component {
   }
 
   routeByType() {
-    return this.state.data.map(dataObj => (
-      <li className="outerLi">
-        <ul className="innerList">
-          <Route
-            path="/results/films"
-            render={() => <Results title={dataObj.title} director={dataObj.director} />}
-          />
-          <Route
-            path="/results/people"
-            render={() => <Results name={dataObj.name} gender={dataObj.gender} />}
-          />
-          <Route
-            path="/results/planets"
-            render={() => <Results name={dataObj.name} climate={dataObj.climate} />}
-          />
-          <Route
-            path="/results/species"
-            render={() => <Results name={dataObj.name} classification={dataObj.classification} />}
-          />
-          <Route
-            path="/results/starships"
-            render={() => <Results name={dataObj.name} manufacturer={dataObj.manufacturer} />}
-          />
-          <Route
-            path="/results/vehicles"
-            render={() => <Results name={dataObj.name} manufacturer={dataObj.manufacturer} />}
-          />
-        </ul>
-      </li>
-    ));
+    if (this.state.data.length > 0) {
+      return this.state.data.map(dataObj => (
+        <li className="outerLi">
+          <ul className="innerList">
+            <Route
+              path="/results/films"
+              render={() => <Results title={dataObj.title} director={dataObj.director} />}
+            />
+            <Route
+              path="/results/people"
+              render={() => <Results name={dataObj.name} gender={dataObj.gender} />}
+            />
+            <Route
+              path="/results/planets"
+              render={() => <Results name={dataObj.name} climate={dataObj.climate} />}
+            />
+            <Route
+              path="/results/species"
+              render={() => <Results name={dataObj.name} classification={dataObj.classification} />}
+            />
+            <Route
+              path="/results/starships"
+              render={() => <Results name={dataObj.name} manufacturer={dataObj.manufacturer} />}
+            />
+            <Route
+              path="/results/vehicles"
+              render={() => <Results name={dataObj.name} manufacturer={dataObj.manufacturer} />}
+            />
+          </ul>
+        </li>
+      ));
+    } else return <li className="noResults">No results found for this search</li>;
   }
 
   render() {
