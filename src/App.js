@@ -1,15 +1,10 @@
 import React, { Component } from 'react';
 import { Route, Switch } from 'react-router-dom';
-import history from './history';
-import Search from './Search';
-import Films from './components/Films';
-import People from './components/People';
-import Planets from './components/Planets';
-import Species from './components/Species';
-import Starships from './components/Starships';
-import Vehicles from './components/Vehicles';
-import ErrorPage from './ErrorPage.js';
-import Loading from './loading';
+import history from './components/history';
+import Search from './components/Search';
+import Results from './components/Results';
+import ErrorPage from './components/ErrorPage.js';
+import Loading from './components/loading';
 import starWars from './starwars.svg';
 import './App.css';
 
@@ -36,11 +31,11 @@ export default class App extends Component {
             let flatResults = [];
             results.forEach(arr => arr.forEach(item => flatResults.push(item)));
             this.setState({ data: flatResults, searching: false });
-            history.push(`/${filter}`);
+            history.push(`/results/${filter}`);
           });
         else {
           this.setState({ data: data.results, searching: false });
-          history.push(`/${filter}`);
+          history.push(`/results/${filter}`);
         }
       })
       .catch(err => console.log(err));
@@ -60,7 +55,41 @@ export default class App extends Component {
       .catch(err => console.log(err));
   }
 
+  routeByType() {
+    return this.state.data.map(dataObj => (
+      <li className="outerLi">
+        <ul className="innerList">
+          <Route
+            path="/results/films"
+            render={() => <Results title={dataObj.title} director={dataObj.director} />}
+          />
+          <Route
+            path="/results/people"
+            render={() => <Results name={dataObj.name} gender={dataObj.gender} />}
+          />
+          <Route
+            path="/results/planets"
+            render={() => <Results name={dataObj.name} climate={dataObj.climate} />}
+          />
+          <Route
+            path="/results/species"
+            render={() => <Results name={dataObj.name} classification={dataObj.classification} />}
+          />
+          <Route
+            path="/results/starships"
+            render={() => <Results name={dataObj.name} manufacturer={dataObj.manufacturer} />}
+          />
+          <Route
+            path="/results/vehicles"
+            render={() => <Results name={dataObj.name} manufacturer={dataObj.manufacturer} />}
+          />
+        </ul>
+      </li>
+    ));
+  }
+
   render() {
+    console.log(this.state.data);
     return (
       <>
         <Route path="/">
@@ -75,12 +104,7 @@ export default class App extends Component {
           <ErrorPage>
             <ul className="searchResults">
               <Route path="/" render={() => (this.state.searching ? <Loading /> : <div></div>)} />
-              <Route path="/films" render={() => <Films data={this.state.data} />} />
-              <Route path="/people" render={() => <People data={this.state.data} />} />
-              <Route path="/planets" render={() => <Planets data={this.state.data} />} />
-              <Route path="/species" render={() => <Species data={this.state.data} />} />
-              <Route path="/starships" render={() => <Starships data={this.state.data} />} />
-              <Route path="/vehicles" render={() => <Vehicles data={this.state.data} />} />
+              <Route path="/results" render={() => this.routeByType()} />
             </ul>
           </ErrorPage>
         </main>

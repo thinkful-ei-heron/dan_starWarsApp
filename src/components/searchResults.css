@@ -3,7 +3,7 @@ ul {
 }
 
 .searchResults {
-  width: 60%;
+  width: 70%;
   display: grid;
   place-items: center center;
   padding: 0;

@@ -1,5 +1,5 @@
 import React from 'react';
-import history from './history';
+import history from './components/history';
 import ReactDOM from 'react-dom';
 import { Router } from 'react-router-dom';
 import App from './App';
