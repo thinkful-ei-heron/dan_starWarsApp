@@ -19,6 +19,10 @@ export default class App extends Component {
     };
   }
 
+  componentDidMount() {
+    history.push('/');
+  }
+
   search = (searchTerm, filter) => {
     history.push('/');
     this.setState({ searching: true });

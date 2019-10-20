@@ -1,0 +1,20 @@
+ {
+   "version": 2,
+   "alias": "dandwagar-starwars-search-app",
+   "name": "starwars-search-app",
+   "routes": [
+       {
+         "src": "^/static/(.*)",
+         "dest": "/static/$1"
+       },
+       {
+         "src": ".*",
+         "dest": "/index.html"
+       },
+      { 
+          "src": "/.*", 
+          "status": 404, 
+          "dest": "index.html"
+      }
+   ]
+ }
