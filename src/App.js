@@ -27,7 +27,6 @@ export default class App extends Component {
       .then(data => {
         if (data.next)
           this.getAll(data).then(results => {
-            console.log(results);
             let flatResults = [];
             results.forEach(arr => arr.forEach(item => flatResults.push(item)));
             this.setState({ data: flatResults, searching: false });
@@ -42,8 +41,6 @@ export default class App extends Component {
   };
 
   getAll(data, results = []) {
-    console.log('fetching next page of data');
-    console.log(data.next);
     if (!data.next) return results;
 
     return fetch(`${data.next}`)
@@ -91,7 +88,6 @@ export default class App extends Component {
   }
 
   render() {
-    console.log(this.state.data);
     return (
       <>
         <Route path="/">
